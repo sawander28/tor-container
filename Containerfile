@@ -13,7 +13,7 @@ ENV TORRC="${TORRC:-/etc/tor/torrc}"
 
 RUN --network=none \
     set -xe && \
-    groupadd --gid "${TOR_USER}" "${TOR_USER_GROUP}" && \
+    groupadd --gid "${TOR_USER_GID}" "${TOR_USER_GROUP}" && \
     useradd --home-dir "/home/${TOR_USER}" \
         --create-home \
         --gid "${TOR_USER_GID}" \
