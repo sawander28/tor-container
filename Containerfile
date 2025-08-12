@@ -25,7 +25,7 @@ COPY torrc ${TORRC}
 RUN mkdir -p /var/lib/tor && chmod 640 /var/lib/tor && \
     chown ${TOR_USER}:${TOR_USER_GROUP} /var/lib/tor 
 
-EXPOSE 9050 1053
+EXPOSE 9050
 
 VOLUME ["/var/lib/tor"]
 
