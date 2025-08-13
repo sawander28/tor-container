@@ -1,1 +1,1 @@
-podman run --hostname onion --net onimages --rm -ti tor
+podman run --rm --name tor-container --net podman -p 9050:9050 -ti tor-container

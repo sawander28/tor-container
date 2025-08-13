@@ -6,7 +6,7 @@ podman container run --name registry \
 
 podman image tag \
     containers.torproject.org/tpo/tpa/base-images/debian:trixie \
-    localhost:5000/debian/trixie
+    localhost:5000/debian:trixie
 
 podman image push --tls-verify=false \
-    localhost:5000/debian/trixie
+    localhost:5000/debian:trixie
