@@ -4,4 +4,4 @@ podman run \
     --net podman \
     -p 9050:9050 \
     -p 1053:1053 \
-    -ti tor-container
+    -dt tor-container
