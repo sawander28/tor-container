@@ -1,35 +1,16 @@
-FROM containers.torproject.org/tpo/tpa/base-images/debian:trixie AS tor
+FROM alpine:latest AS tor
 
-RUN DEBIAN_FRONTEND=noninteractive \
-    apt update && apt install --no-install-recommends -yq curl tor && \
-    rm -rf /var/lib/apt/lists/*
-
-ARG TOR_USER="tor"
-ARG TOR_USER_GROUP="tor"
-ARG TOR_USER_UID="${TOR_USER_UID:-1000}"
-ARG TOR_USER_GID="${TOR_USER_GID:-1000}"
+RUN apk add --no-cache tor
 
 ENV TORRC="${TORRC:-/etc/tor/torrc}"
 
-RUN --network=none \
-    set -xe && \
-    groupadd --gid "${TOR_USER_GID}" "${TOR_USER_GROUP}" && \
-    useradd --home-dir "/home/${TOR_USER}" \
-        --create-home \
-        --gid "${TOR_USER_GID}" \
-        --uid "${TOR_USER_UID}" \
-        "${TOR_USER}"
-
 COPY torrc ${TORRC}
 
-RUN mkdir -p /var/lib/tor && \
-    chmod 755 /var/lib/tor && \
-    chown ${TOR_USER}:${TOR_USER_GROUP} /var/lib/tor
+RUN chown -R tor:tor /etc/tor /var/lib/tor
+RUN chmod 600 /etc/tor/torrc
 
 EXPOSE 9050 1053
 
-VOLUME ["/var/lib/tor"]
+USER "tor"
 
-USER "${TOR_USER}"
-
-CMD ["tor"]
+ENTRYPOINT ["/usr/bin/tor"]

@@ -1,1 +1,1 @@
-podman build -f Containerfile -t tor
+podman build -f Containerfile -t tor-container
