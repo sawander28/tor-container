@@ -11,6 +11,8 @@ RUN chmod 600 /etc/tor/torrc
 
 EXPOSE 9050 1053
 
+VOLUME ["/var/lib/tor"]
+
 USER "tor"
 
 ENTRYPOINT ["/usr/bin/tor"]
