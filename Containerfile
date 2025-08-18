@@ -2,12 +2,11 @@ FROM alpine:latest AS tor
 
 RUN apk add --no-cache tor
 
-ENV TORRC="${TORRC:-/etc/tor/torrc}"
-
-COPY torrc ${TORRC}
-
-RUN chown -R tor:tor /etc/tor /var/lib/tor
+COPY torrc /etc/tor/torrc
+RUN chown -R tor: /etc/tor
 RUN chmod 600 /etc/tor/torrc
+
+RUN chown -R tor: /var/lib/tor
 
 EXPOSE 9050 1053
 

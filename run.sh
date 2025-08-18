@@ -1,8 +1,9 @@
 podman run \
     --rm \
     --name tor-container \
-    --network podman \
-    --volume ./tor:/var/lib/tor \
+    --network=host \
     --publish 127.0.0.1:9050:9050 \
-    --publish 127.0.0.1:1053:1053 \
-    -t tor-container 
+    --publish 127.0.0.1:9051:9051 \
+    --publish 127.0.0.1:9052:9052 \
+    --mount type=volume,src=onion,target=/var/lib/tor \
+    -t tor-container

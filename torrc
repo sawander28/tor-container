@@ -1,10 +1,12 @@
-SocksPort 127.0.0.1:9050
-#IsolateDestAddr IsolateDestPort
-#SocksPort 127.0.0.1:9051 NoIsolateDestAddr NoIsolateDestPort NoIsolateClientProtocol
-#SocksPort 127.0.0.1:9052 IsolateSOCKSAuth KeepAliveIsolateSOCKSAuth ExtendedErrors
+SocksPort 127.0.0.1:9050 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9051 NoIsolateDestAddr NoIsolateDestPort NoIsolateClientProtocol
+SocksPort 127.0.0.1:9052 IsolateSOCKSAuth KeepAliveIsolateSOCKSAuth ExtendedErrors
+
+SocksPolicy accept 127.0.0.1
+SocksPolicy reject *
 
 # torified dns
-DNSPort 127.0.0.1:1053
+DNSPort 1053
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion
 
